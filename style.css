@@ -51,6 +51,10 @@ h3{
     border-radius: .5em;
     border: 1px solid black;
     cursor: pointer;
+    transition-property: opacity;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+    transition-delay: 0;
 }
 
 .box:hover{
@@ -68,6 +72,10 @@ h3{
 }
 #box-4{
     background-color: rgb(216, 216, 38);
+}
+
+.selected{
+    opacity: .3;
 }
 
 button{
