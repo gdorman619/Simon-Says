@@ -1,8 +1,9 @@
 const boxes = document.querySelectorAll(".box")
 const startButton = document.querySelector("#start-button")
 
-let numRounds = 1;
+let numRounds = 5;
 let userScore = 0
+let cpuBoxesSelectedList = []
 
 function selectBox() {
      // Returns a random integer from 0 to 3:
@@ -13,21 +14,24 @@ function selectBox() {
      boxes[randomNum].addEventListener("transitionend", function (e) {
         this.classList.remove("selected")
      });
-       
+    cpuBoxesSelectedList.push(boxes[randomNum].id)
   };
 
-
-  startButton.addEventListener("click", function (e){
-
+  function selectBoxLoop(loopCountParam){
+    loopCount = loopCountParam
     var intervalId = window.setInterval(function(){
         selectBox();
-        numRounds--;
-        if (numRounds === 0){
+        loopCount--;
+        if (loopCount === 0){
+            console.log(cpuBoxesSelectedList)
             clearInterval(intervalId)
-            numRounds = 1
+            loopCount = loopCountParam
         }
       }, 800);
+  }
 
+  startButton.addEventListener("click", function (e){
+    selectBoxLoop(numRounds);
   });
   
   
