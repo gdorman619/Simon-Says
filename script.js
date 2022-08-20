@@ -1,5 +1,11 @@
 const boxes = document.querySelectorAll(".box")
 const startButton = document.querySelector("#start-button")
+let audioRed = new Audio("audio/bootsy__saturn-loop.wav")
+let audioGreen = new Audio("audio/jungle__water-drop.wav")
+let audioBlue = new Audio("audio/madjad__indonesian-thum-strike.wav")
+let audioYellow = new Audio("audio/neatonk__piano-med.wav")
+
+
 
 let numRounds = 5;
 let userScore = 0
@@ -12,6 +18,18 @@ function selectBox() {
      console.log(boxes[randomNum].id);
      boxes[randomNum].classList.add("selected")
      boxes[randomNum].addEventListener("transitionend", function (e) {
+        if (boxes[randomNum].id === 'box-1'){
+            audioRed.play();
+        }
+        if (boxes[randomNum].id === 'box-2'){
+            audioGreen.play();
+        }
+        if (boxes[randomNum].id === 'box-3'){
+            audioBlue.play();
+        }
+        if (boxes[randomNum].id === 'box-4'){
+            audioYellow.play();
+        }
         this.classList.remove("selected")
      });
     cpuBoxesSelectedList.push(boxes[randomNum].id)
@@ -27,7 +45,7 @@ function selectBox() {
             clearInterval(intervalId)
             loopCount = loopCountParam
         }
-      }, 800);
+      }, 1200);
   }
 
   startButton.addEventListener("click", function (e){

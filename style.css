@@ -57,9 +57,9 @@ h3{
     transition-delay: 0;
 }
 
-.box:hover{
+/* .box:hover{
     opacity: .7;
-}
+} */
 
 #box-1{
     background-color: rgb(225, 48, 48);
