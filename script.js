@@ -1,5 +1,7 @@
 const boxes = document.querySelectorAll(".box");
 const startButton = document.querySelector("#start-button");
+let userScoreText = document.querySelector("#score");
+let titleText = document.querySelector(".title");
 let audioRed = new Audio("audio/bootsy__saturn-loop.wav");
 let audioGreen = new Audio("audio/jungle__water-drop.wav");
 let audioBlue = new Audio("audio/madjad__indonesian-thum-strike.wav");
@@ -8,7 +10,8 @@ let audioYellow = new Audio("audio/neatonk__piano-med.wav");
 
 let cpuSequence = [];
 let userSequence = [];
-let round = 0;
+let userSequenceIndex = 0;
+let score = 0;
 
 function selectBox(boxNum) {
     
@@ -33,10 +36,6 @@ function selectBox(boxNum) {
 
   function cpuSequenceLoop(){
 
-    if (cpuSequence.length === 0){
-        addCpuSequenceNumber();
-    }
-
     let cpuSequenceCounter = 0;
     
     let intervalId = window.setInterval(function(){
@@ -53,34 +52,94 @@ function selectBox(boxNum) {
 
   function addCpuSequenceNumber(){
     let randomNum = Math.floor(Math.random() * 4);
-    console.log(randomNum);
     cpuSequence.push(randomNum);
   }
+
+  function nextRound(){
+    score += 1;
+    userScoreText.innerHTML = score;
+    addCpuSequenceNumber()
+    userSequenceIndex = 0;
+    userSequence = [];
+    cpuSequenceLoop();
+  };
 
   boxes[0].addEventListener("click", function (e){
     console.log('red');
     selectBox(0);
+    userSequence.push(0);
+    if (checkUserSelection(userSequenceIndex) === true){
+        if (userSequenceIndex === cpuSequence.length-1 ){
+            nextRound();
+        }else{
+            userSequenceIndex += 1;
+        }
+    }
+   
   });
 
   boxes[1].addEventListener("click", function (e){
     console.log('green');
     selectBox(1);
+    userSequence.push(1);
+    if (checkUserSelection(userSequenceIndex) === true){
+        if (userSequenceIndex === cpuSequence.length-1 ){
+            nextRound();
+        }else{
+            userSequenceIndex += 1;
+        }
+    }
+
   });
 
   boxes[2].addEventListener("click", function (e){
     console.log('blue');
     selectBox(2);
+    userSequence.push(2);
+    if (checkUserSelection(userSequenceIndex) === true){
+        if (userSequenceIndex === cpuSequence.length-1 ){
+            nextRound();
+        }else{
+            userSequenceIndex += 1;
+        }
+    }
+  
   });
 
   boxes[3].addEventListener("click", function (e){
     console.log('yellow');
     selectBox(3);
+    userSequence.push(3);
+    if (checkUserSelection(userSequenceIndex) === true){
+        if (userSequenceIndex === cpuSequence.length-1 ){
+            nextRound();
+        }else{
+            userSequenceIndex += 1;
+        }
+    }
+  
   });
 
+  function gameOver(){
+    titleText.innerHTML = 'GAME OVER';
+    cpuSequence = [];
+    userSequence = [];
+    userSequenceIndex = 0;
+  };
+
+  function checkUserSelection(numIndex){
+    if (userSequence[numIndex] === cpuSequence[numIndex]){
+        return true;
+    }else{
+        gameOver();
+    }
+  }
 
   startButton.addEventListener("click", function (e){
-    round = 1;
-    cpuSequence = []
+    titleText.innerHTML = 'FOCUS FOUR';
+    score = 0;
+    userScoreText.innerHTML = score;
+    addCpuSequenceNumber();
     cpuSequenceLoop();
   });
   
