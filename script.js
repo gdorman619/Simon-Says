@@ -36,6 +36,8 @@ function selectBox(boxNum) {
 
   function cpuSequenceLoop(){
 
+    titleText.innerHTML = 'FOCUS!';
+
     let cpuSequenceCounter = 0;
     
     let intervalId = window.setInterval(function(){
@@ -43,6 +45,7 @@ function selectBox(boxNum) {
         if (cpuSequenceCounter === cpuSequence.length - 1){
             cpuSequenceCounter = 0;
             clearInterval(intervalId);
+            titleText.innerHTML = 'GO!';
         }
         else{
             cpuSequenceCounter += 1;
@@ -136,7 +139,8 @@ function selectBox(boxNum) {
   }
 
   startButton.addEventListener("click", function (e){
-    titleText.innerHTML = 'FOCUS FOUR';
+    userSequence = [];
+    userSequenceIndex = 0;
     score = 0;
     userScoreText.innerHTML = score;
     addCpuSequenceNumber();
