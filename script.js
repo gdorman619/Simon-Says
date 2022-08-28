@@ -46,6 +46,8 @@ function selectBox(boxNum) {
             cpuSequenceCounter = 0;
             clearInterval(intervalId);
             titleText.innerHTML = 'GO!';
+      
+            
         }
         else{
             cpuSequenceCounter += 1;
@@ -139,6 +141,7 @@ function selectBox(boxNum) {
   }
 
   startButton.addEventListener("click", function (e){
+    cpuSequence = [];
     userSequence = [];
     userSequenceIndex = 0;
     score = 0;
