@@ -12,6 +12,7 @@ let cpuSequence = [];
 let userSequence = [];
 let userSequenceIndex = 0;
 let score = 0;
+let canClick = true;
 
 function selectBox(boxNum) {
     
@@ -36,6 +37,8 @@ function selectBox(boxNum) {
 
   function cpuSequenceLoop(){
 
+    canClick = false;
+
     titleText.innerHTML = 'FOCUS!';
 
     let cpuSequenceCounter = 0;
@@ -46,8 +49,7 @@ function selectBox(boxNum) {
             cpuSequenceCounter = 0;
             clearInterval(intervalId);
             titleText.innerHTML = 'GO!';
-      
-            
+            canClick = true;
         }
         else{
             cpuSequenceCounter += 1;
@@ -70,59 +72,63 @@ function selectBox(boxNum) {
   };
 
   boxes[0].addEventListener("click", function (e){
-    console.log('red');
-    selectBox(0);
-    userSequence.push(0);
-    if (checkUserSelection(userSequenceIndex) === true){
-        if (userSequenceIndex === cpuSequence.length-1 ){
-            nextRound();
-        }else{
-            userSequenceIndex += 1;
+    if (canClick === true){
+        console.log('red');
+        selectBox(0);
+        userSequence.push(0);
+        if (checkUserSelection(userSequenceIndex) === true){
+            if (userSequenceIndex === cpuSequence.length - 1 ){
+                nextRound();
+            }else{
+                userSequenceIndex += 1;
+            }
         }
-    }
-   
+    } 
   });
 
   boxes[1].addEventListener("click", function (e){
-    console.log('green');
-    selectBox(1);
-    userSequence.push(1);
-    if (checkUserSelection(userSequenceIndex) === true){
-        if (userSequenceIndex === cpuSequence.length-1 ){
-            nextRound();
-        }else{
-            userSequenceIndex += 1;
+    if (canClick === true){
+        console.log('green');
+        selectBox(1);
+        userSequence.push(1);
+        if (checkUserSelection(userSequenceIndex) === true){
+            if (userSequenceIndex === cpuSequence.length - 1 ){
+                nextRound();
+            }else{
+                userSequenceIndex += 1;
+            }
         }
     }
-
   });
 
   boxes[2].addEventListener("click", function (e){
-    console.log('blue');
-    selectBox(2);
-    userSequence.push(2);
-    if (checkUserSelection(userSequenceIndex) === true){
-        if (userSequenceIndex === cpuSequence.length-1 ){
-            nextRound();
-        }else{
-            userSequenceIndex += 1;
+    if (canClick === true){
+        console.log('blue');
+        selectBox(2);
+        userSequence.push(2);
+        if (checkUserSelection(userSequenceIndex) === true){
+            if (userSequenceIndex === cpuSequence.length - 1 ){
+                nextRound();
+            }else{
+                userSequenceIndex += 1;
+            }
         }
     }
-  
   });
 
   boxes[3].addEventListener("click", function (e){
-    console.log('yellow');
-    selectBox(3);
-    userSequence.push(3);
-    if (checkUserSelection(userSequenceIndex) === true){
-        if (userSequenceIndex === cpuSequence.length-1 ){
-            nextRound();
-        }else{
-            userSequenceIndex += 1;
+    if (canClick === true){
+        console.log('yellow');
+        selectBox(3);
+        userSequence.push(3);
+        if (checkUserSelection(userSequenceIndex) === true){
+            if (userSequenceIndex === cpuSequence.length - 1 ){
+                nextRound();
+            }else{
+                userSequenceIndex += 1;
+            }
         }
     }
-  
   });
 
   function gameOver(){
@@ -141,13 +147,15 @@ function selectBox(boxNum) {
   }
 
   startButton.addEventListener("click", function (e){
-    cpuSequence = [];
-    userSequence = [];
-    userSequenceIndex = 0;
-    score = 0;
-    userScoreText.innerHTML = score;
-    addCpuSequenceNumber();
-    cpuSequenceLoop();
+    if (canClick === true){
+        cpuSequence = [];
+        userSequence = [];
+        userSequenceIndex = 0;
+        score = 0;
+        userScoreText.innerHTML = score;
+        addCpuSequenceNumber();
+        cpuSequenceLoop();
+    }  
   });
   
   
