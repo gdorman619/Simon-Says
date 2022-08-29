@@ -49,8 +49,11 @@ function selectBox(boxNum) {
         if (cpuSequenceCounter === cpuSequence.length - 1){
             cpuSequenceCounter = 0;
             clearInterval(intervalId);
-            titleText.innerHTML = 'GO!';
-            canClick = true;
+            setTimeout(()=> {
+                titleText.innerHTML = 'GO!';
+                canClick = true;
+            },1000);
+
         }
         else{
             cpuSequenceCounter += 1;
@@ -64,12 +67,16 @@ function selectBox(boxNum) {
   }
 
   function nextRound(){
-    score += 1;
-    userScoreText.innerHTML = score;
-    addCpuSequenceNumber()
-    userSequenceIndex = 0;
-    userSequence = [];
-    cpuSequenceLoop();
+
+    setTimeout(()=> {
+        score += 1;
+        userScoreText.innerHTML = score;
+        addCpuSequenceNumber()
+        userSequenceIndex = 0;
+        userSequence = [];
+        cpuSequenceLoop();
+    },800);
+    
   };
 
   boxes[0].addEventListener("click", function (e){
