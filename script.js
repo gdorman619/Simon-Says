@@ -166,7 +166,10 @@ function selectBox(boxNum) {
         score = 0;
         userScoreText.innerHTML = score;
         addCpuSequenceNumber();
-        cpuSequenceLoop();
+        setTimeout(()=> {
+            cpuSequenceLoop();
+        },500);
+        
     }  
   });
   
