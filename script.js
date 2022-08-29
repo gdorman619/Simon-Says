@@ -13,6 +13,7 @@ let userSequence = [];
 let userSequenceIndex = 0;
 let score = 0;
 let canClick = true;
+let gameStarted = false;
 
 function selectBox(boxNum) {
     
@@ -72,7 +73,7 @@ function selectBox(boxNum) {
   };
 
   boxes[0].addEventListener("click", function (e){
-    if (canClick === true){
+    if (canClick === true && gameStarted === true){
         console.log('red');
         selectBox(0);
         userSequence.push(0);
@@ -87,7 +88,7 @@ function selectBox(boxNum) {
   });
 
   boxes[1].addEventListener("click", function (e){
-    if (canClick === true){
+    if (canClick === true && gameStarted === true){
         console.log('green');
         selectBox(1);
         userSequence.push(1);
@@ -102,7 +103,7 @@ function selectBox(boxNum) {
   });
 
   boxes[2].addEventListener("click", function (e){
-    if (canClick === true){
+    if (canClick === true && gameStarted === true){
         console.log('blue');
         selectBox(2);
         userSequence.push(2);
@@ -117,7 +118,7 @@ function selectBox(boxNum) {
   });
 
   boxes[3].addEventListener("click", function (e){
-    if (canClick === true){
+    if (canClick === true && gameStarted === true){
         console.log('yellow');
         selectBox(3);
         userSequence.push(3);
@@ -133,6 +134,7 @@ function selectBox(boxNum) {
 
   function gameOver(){
     titleText.innerHTML = 'GAME OVER';
+    gameStarted = false;
     cpuSequence = [];
     userSequence = [];
     userSequenceIndex = 0;
@@ -148,6 +150,7 @@ function selectBox(boxNum) {
 
   startButton.addEventListener("click", function (e){
     if (canClick === true){
+        gameStarted = true;
         cpuSequence = [];
         userSequence = [];
         userSequenceIndex = 0;
