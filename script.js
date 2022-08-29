@@ -6,6 +6,7 @@ let audioRed = new Audio("audio/bootsy__saturn-loop.wav");
 let audioGreen = new Audio("audio/jungle__water-drop.wav");
 let audioBlue = new Audio("audio/madjad__indonesian-thum-strike.wav");
 let audioYellow = new Audio("audio/neatonk__piano-med.wav");
+let clickSound = new Audio("audio/click-01-fast.wav");
 
 
 let cpuSequence = [];
@@ -157,6 +158,7 @@ function selectBox(boxNum) {
 
   startButton.addEventListener("click", function (e){
     if (canClick === true){
+        clickSound.play();
         gameStarted = true;
         cpuSequence = [];
         userSequence = [];
